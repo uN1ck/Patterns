@@ -6,24 +6,11 @@ import actionObject.parts.SpecialPart;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActionObject implements ActionObjectComponent {
-    private ArrayList<SpecialAction> specialActions;
-    private ArrayList<SpecialPart> specialParts;
-    private ActionObjectComponent owner;
-    private ArrayList<ActionObjectComponent> children;
+public abstract class ActionObject {
+    private ArrayList<SpecialAction> specialActions = new ArrayList<>();
+    private ArrayList<SpecialPart> specialParts = new ArrayList<>();
 
-    public ActionObject() {
-        specialActions = new ArrayList<>();
-        specialParts = new ArrayList<>();
-        children = new ArrayList<>();
-        owner = null;
-    }
-
-    public ActionObject(ActionObjectComponent owner) {
-        specialActions = new ArrayList<>();
-        specialParts = new ArrayList<>();
-        this.owner = owner;
-    }
+    //
 
     public void addSpecialAction(SpecialAction specialAction) {
         this.specialActions.add(specialAction);
@@ -46,6 +33,7 @@ public class ActionObject implements ActionObjectComponent {
         return result;
     }
 
+    //
 
     public void addSpecialPart(SpecialPart specialPart) {
         this.specialParts.add(specialPart);
@@ -67,21 +55,6 @@ public class ActionObject implements ActionObjectComponent {
         }
         return result;
     }
-
-
-    public ActionObjectComponent getOwnership() {
-        return owner;
-    }
-
-    @Override
-    public List<ActionObjectComponent> getChildren() {
-        return children;
-    }
-
-    @Override
-    public void addChild(ActionObjectComponent component) {
-        children.add(component);
-    }
-
+    
 }
 

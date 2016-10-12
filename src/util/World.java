@@ -1,29 +1,31 @@
 package util;
 
-import actionObject.Cell;
+import actionObject.UnitComponent;
 
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class World {
-    private Cell[][] world;
-    private Random random;
-    private GraphicalShell graphicalShell = new GraphicalShell();
-    private ArrayList<Set<String>> players;
+    private Cell[][] map;
+    private ArrayList<Set<UnitComponent>> sides;
 
+    public World(int size) {
+        sides = new ArrayList<>();
+        map = new Cell[size][size];
 
-    public World(int width, int height) {
-        world = new Cell[width][height];
-        players = new ArrayList<>();
-        random = new Random();
-
-        for (int i = 0; i < width; i++) {
-            for (int k = 0; k < height; k++) {
-                world[i][k] = new Cell();
+        for (int i = 0; i < size; i++) {
+            for (int k = 0; k < size; k++) {
+                map[i][k] = new Cell();
+                map[i][k].setWorld(this);
             }
         }
     }
 
+    public void Init(int players) {
 
+        for (int i = 0; i < players; i++) {
+            sides.add(new TreeSet<>());
+        }
+    }
 }

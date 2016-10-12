@@ -19,9 +19,9 @@ public class SpecialActionGetSupplies implements SpecialAction {
         SpecialPart to = target.getSpecialPartByName("GaveSupplies");
 
         if (from != null && to != null) {
-            int current = from.tryGiveValue(0);
-            int overflow = to.tryGetValue(current);
-            from.tryGetValue(overflow);
+            int current = from.getPropertyValue(0);
+            int overflow = to.setPropertyValue(current);
+            from.setPropertyValue(overflow);
         }
     }
 
