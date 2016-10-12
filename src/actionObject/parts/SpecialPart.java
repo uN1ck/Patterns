@@ -2,9 +2,9 @@ package actionObject.parts;
 
 public interface SpecialPart {
 
-    void tryGiveValue(int value);
+    int getPropertyValue(int value);
 
-    int tryGetValue(int value);
+    int setPropertyValue(int value);
 
     String partName();
 

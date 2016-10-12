@@ -2,7 +2,7 @@ package actionObject.parts;
 
 public class SpecialPartEngine implements SpecialPart {
     private int speed;
-    private String name ="PartBase";
+    private String name = "PartBase";
     private int cost = 10;
 
     public SpecialPartEngine(int value) {
@@ -10,12 +10,13 @@ public class SpecialPartEngine implements SpecialPart {
     }
 
     @Override
-    public void tryGiveValue(int value) {
-
+    public int setPropertyValue(int value) {
+        speed = value;
+        return speed;
     }
 
     @Override
-    public int tryGetValue(int value) {
+    public int getPropertyValue(int value) {
         return speed;
     }
 

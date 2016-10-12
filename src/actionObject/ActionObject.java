@@ -25,7 +25,6 @@ public class ActionObject implements ActionObjectComponent {
         this.owner = owner;
     }
 
-
     public void addSpecialAction(SpecialAction specialAction) {
         this.specialActions.add(specialAction);
     }

@@ -1,6 +1,5 @@
 package actionObject;
 
-import actionObject.actions.SpecialAction;
 
 import java.util.List;
 

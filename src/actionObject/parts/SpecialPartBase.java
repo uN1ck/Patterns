@@ -15,13 +15,15 @@ public class SpecialPartBase implements SpecialPart {
         this.healthPoints = value;
     }
 
+
     @Override
-    public void tryGiveValue(int value) {
+    public int getPropertyValue(int value) {
         healthPoints = (healthPoints + value) % (health + 1);
+        return healthPoints;
     }
 
     @Override
-    public int tryGetValue(int value) {
+    public int setPropertyValue(int value) {
         health = health - value;
         if (health < 0)
             health = 0;
