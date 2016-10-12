@@ -1,18 +1,18 @@
-package unit;
+package actionObject.actions;
 
-import util.Cell;
+import actionObject.ActionObject;
 
 /**
  * Интерфеййс активного специального действия юнита
  */
-public interface UnitAction {
+public interface SpecialAction {
 
     /**
      * Метод активного специального действия юнита
      * @param target Объект над которым выполняется действие
      * @param owner Объект выполняющий действие
      */
-    void doAction(Cell target, Unit owner);
+    void doAction(ActionObject target, ActionObject owner);
 
     /**
      * Метод определения идентификатора действия
@@ -20,10 +20,4 @@ public interface UnitAction {
      */
     String actionName();
 
-    /**
-     * Метод определения стоимости действия.
-     * (Используется для динамического перестроения и изменения юнитов)
-     * @return Стоимость действия
-     */
-    int getActionCost();
 }
