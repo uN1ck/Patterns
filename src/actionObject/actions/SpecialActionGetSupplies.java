@@ -8,8 +8,10 @@ public class SpecialActionGetSupplies implements SpecialAction {
 
     @Override
     public void doAction(ActionObject target, ActionObject owner) {
-        SpecialPart tank = owner.getSpecialPartByName("PartTank");
-
+        SpecialPart tank = target.getSpecialPartByName("PartTank");
+        if (tank != null){
+            //tank.tryGiveValue();
+        }
     }
 
     @Override
