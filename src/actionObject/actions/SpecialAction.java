@@ -15,7 +15,7 @@ public interface SpecialAction {
      * @param target Объект над которым выполняется действие
      * @param owner  Объект выполняющий действие
      */
-    void doAction(ActionObject target, ActionObject owner);
+    void doAction(ActionObject target, ActionObject owner) throws Exception;
 
     /**
      * Метод определения идентификатора действия

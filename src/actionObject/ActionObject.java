@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ActionObject {
+public class ActionObject implements Comparable {
     private ArrayList<SpecialAction> specialActions = new ArrayList<>();
     private Map<String, String> properties = new HashMap<>();
 
@@ -52,5 +52,21 @@ public class ActionObject {
         return properties.get(name);
     }
 
+    @Override
+    public String toString() {
+        String res = "Properties: \n";
+        for (Map.Entry current : properties.entrySet())
+            res += "[ name: " + current.getKey() + " value: " + current.getValue() + " ]\n";
+        res += "Actions:\n[";
+        for (SpecialAction current : specialActions)
+            res += current.actionName() + " ";
+        res += "]\n";
+        return res + super.toString();
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return this.hashCode() - o.hashCode();
+    }
 }
 

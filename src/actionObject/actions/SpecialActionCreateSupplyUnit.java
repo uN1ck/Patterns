@@ -19,4 +19,9 @@ public class SpecialActionCreateSupplyUnit implements SpecialAction {
         return name;
     }
 
+    @Override
+    public String[] requiredProperties() {
+        return new String[0];
+    }
+
 }

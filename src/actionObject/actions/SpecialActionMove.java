@@ -17,23 +17,14 @@ public class SpecialActionMove implements SpecialAction {
     }
 
     @Override
-    public void doAction(ActionObject target, ActionObject owner) {
+    public void doAction(ActionObject target, ActionObject owner) throws Exception {
         Point position = world.getActionObjectCoordinates(owner);
-        Point desiredPosition = world.getActionObjectCoordinates(target);
-        Point nextPositinon = getNearestTo(desiredPosition, getAvailiblePoints(position));
-        world.getCellByCoordinates(nextPositinon).setUnit(owner);
+        Point nextPositinon = world.getActionObjectCoordinates(target);
+
+        if (world.getCellByCoordinates(nextPositinon).setUnit(owner) == false)
+            throw new Exception("Can't move unit");
+
         world.getCellByCoordinates(position).setUnit(null);
-    }
-
-    private Set<Point> getAvailiblePoints(Point current) {
-        Set<Point> result = new TreeSet<>();
-        //TODO: Дописать поиск допустимых точек через БФС
-        return result;
-    }
-
-    private Point getNearestTo(Point value, Set<Point> points) {
-        //TODO: Дописать поиск ближайшей
-        return null;
     }
 
     @Override

@@ -16,7 +16,6 @@ public class SpecialActionShoot implements SpecialAction {
     public void doAction(ActionObject target, ActionObject owner) {
         if (getDistance(target, owner) < Integer.parseInt(owner.getProperty("ShootRange")))
             target.addProperty("Health", String.valueOf(Integer.parseInt(target.getProperty("Health")) - Integer.parseInt(owner.getProperty("ShootDamageamage"))));
-
     }
 
     private int getDistance(ActionObject target, ActionObject owner) {

@@ -19,8 +19,16 @@ public class Cell extends actionObject.ActionObject {
         return unit;
     }
 
-    public void setUnit(ActionObject unit) {
-        this.unit = unit;
+    public boolean setUnit(ActionObject unit) {
+        if (unit == null) {
+            this.unit = null;
+            return true;
+        }
+        if (this.unit == null) {
+            this.unit = unit;
+            return true;
+        }
+        return false;
     }
 
     public World getWorld() {
@@ -29,5 +37,15 @@ public class Cell extends actionObject.ActionObject {
 
     public void setWorld(World world) {
         this.world = world;
+    }
+
+    @Override
+    public String toString() {
+        String result = "Cell content:\n";
+        if (unit != null)
+            result += unit.toString();
+        else
+            result += "NONE";
+        return result;
     }
 }
