@@ -1,26 +1,25 @@
 package util;
 
-import actionObject.UnitComponent;
+import actionObject.ActionObject;
 
 /**
- * Класс клетки игры. В клетке может находиться толкьо один текущий {@link UnitComponent} (в дальнейшем юнит), предком клетки является (?),
- * Детьми клетки являются соседи клетки, т.е. места, доступные к перемещению от текущей.
- * Классотвечает за хранение юнита в текущей клетке и операции с ресурсами в текущей клетке.
+ * Класс клетки игры. В клетке может находиться толкьо один текущий {@link ActionObject} (в дальнейшем юнит).
+ * Класс отвечает за хранение юнита в текущей клетке и операции с ресурсами в текущей клетке.
  * Юнит в клетке может быть фиктивным и изображать препятсвие, мешающее перемещаться через эту клетку.
  */
 public class Cell extends actionObject.ActionObject {
-    private UnitComponent unit = null;
+    private ActionObject unit = null;
     private World world;
 
     public Cell() {
         setUnit(null);
     }
 
-    public UnitComponent getUnit() {
+    public ActionObject getUnit() {
         return unit;
     }
 
-    public void setUnit(UnitComponent unit) {
+    public void setUnit(ActionObject unit) {
         this.unit = unit;
     }
 

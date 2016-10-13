@@ -1,14 +1,15 @@
 package util;
 
-import actionObject.UnitComponent;
+import actionObject.ActionObject;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeSet;
 
 public class World {
     private Cell[][] map;
-    private ArrayList<Set<UnitComponent>> sides;
+    private ArrayList<Set<ActionObject>> sides;
 
     public World(int size) {
         sides = new ArrayList<>();
@@ -20,6 +21,14 @@ public class World {
                 map[i][k].setWorld(this);
             }
         }
+    }
+
+    public Point getActionObjectCoordinates(ActionObject value) {
+        return new Point(0, 0);
+    }
+
+    public Cell getCellByCoordinates(Point value) {
+        return null;
     }
 
     public void Init(int players) {

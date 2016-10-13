@@ -1,14 +1,25 @@
 package actionObject;
 
 import actionObject.actions.SpecialAction;
-import actionObject.parts.SpecialPart;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public abstract class ActionObject {
+public class ActionObject {
     private ArrayList<SpecialAction> specialActions = new ArrayList<>();
-    private ArrayList<SpecialPart> specialParts = new ArrayList<>();
+    private Map<String, String> properties = new HashMap<>();
+
+    public ActionObject() {
+        properties.put("owner", "none");
+        properties.put("name", "#unnamed");
+    }
+
+    public ActionObject(String name) {
+        properties.put("owner", "none");
+        properties.put("name", name);
+    }
 
     //
 
@@ -33,28 +44,13 @@ public abstract class ActionObject {
         return result;
     }
 
-    //
-
-    public void addSpecialPart(SpecialPart specialPart) {
-        this.specialParts.add(specialPart);
+    public void addProperty(String name, String value) {
+        properties.put(name, value);
     }
 
-    public void deleteSpecialPart(SpecialPart specialPart) {
-        this.specialParts.remove(specialPart);
+    public String getProperty(String name) {
+        return properties.get(name);
     }
 
-    public List<SpecialPart> getSpecialPart() {
-        return specialParts;
-    }
-
-    public SpecialPart getSpecialPartByName(String name) {
-        SpecialPart result = null;
-        for (SpecialPart current : specialParts) {
-            if (current.partName() == name)
-                result = current;
-        }
-        return result;
-    }
-    
 }
 
