@@ -1,14 +1,13 @@
 package util;
 
 import actionObject.ActionObject;
-import actionObject.ActionObjectComponent;
 
 /**
  * Класс клетки игры. В клетке может находиться толкьо один текущий {@link ActionObject} (в дальнейшем юнит).
  * Класс отвечает за хранение юнита в текущей клетке и операции с ресурсами в текущей клетке.
  * Юнит в клетке может быть фиктивным и изображать препятсвие, мешающее перемещаться через эту клетку.
  */
-public class Cell extends ActionObjectComponent {
+public class Cell extends ActionObject {
     private ActionObject unit = null;
     private World world;
 

@@ -16,7 +16,7 @@ public interface BasicActionObjectFactory extends Cloneable {
      *
      * @return экземпляр юнита
      */
-    public ActionObject buildActionObject();
+    ActionObject buildActionObject();
 
     /**
      * Метод добавления действия к экземпляру фабрики
