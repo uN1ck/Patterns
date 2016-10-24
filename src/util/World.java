@@ -11,6 +11,9 @@ import java.util.*;
 public class World {
     private Cell[][] map;
     private ArrayList<Set<ActionObject>> sides;
+    private GraphicsController graphicsControllerBridge;
+
+    //TODO: перенести в метод
     private BasicActionObjectFactory baseUnit = new ConcreteUnitFactory();
     private BasicActionObjectFactory assaultUnit = new ConcreteUnitFactory();
     private BasicActionObjectFactory supplyUnit = new ConcreteUnitFactory();
