@@ -9,7 +9,6 @@ import javafx.stage.Stage;
 public class Window extends Application implements GraphicsBridge {
     private Canvas canvas;
     GraphicsContext graphicsContext;
-    private GraphicsComponent root;
 
     public static void main(String[] args) {
         launch(args);

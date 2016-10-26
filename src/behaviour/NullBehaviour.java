@@ -1,4 +1,4 @@
-package util;
+package behaviour;
 
 public class NullBehaviour extends Behaviour {
 }

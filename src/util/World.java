@@ -81,14 +81,4 @@ public class World {
 
     }
 
-    @Override
-    public String toString() {
-        String result = "";
-        for (int i = 0; i < map.length; i++) {
-            for (int k = 0; k < map.length; k++) {
-                result += "position(" + i + "," + k + ") \nvalue: \n" + map[i][k].toString() + "\n\n";
-            }
-        }
-        return result;
-    }
 }

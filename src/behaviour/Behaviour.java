@@ -1,4 +1,4 @@
-package util;
+package behaviour;
 
 public abstract class Behaviour {
 }
