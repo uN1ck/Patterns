@@ -12,12 +12,16 @@ public class ConcreteIterator<T> implements Iterator<T> {
     }
 
     @Override
-    public void next() {
-        pos++;
+    public T next() {
+        if (aggregatedListLink.size() >= pos)
+            return null;
+        else
+            return aggregatedListLink.get(pos++);
     }
 
     @Override
-    public T getValue() {
-        return null;
+    public void restart() {
+        pos = 0;
     }
+
 }

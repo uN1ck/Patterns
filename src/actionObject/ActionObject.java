@@ -1,14 +1,16 @@
 package actionObject;
 
 import actionObject.actions.SpecialAction;
+import util.Aggregation.ConcreteAggregator;
+import util.Aggregation.Iterator;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ActionObject implements Comparable {
-    private ArrayList<SpecialAction> specialActions = new ArrayList<>();
+    private ConcreteAggregator<SpecialAction> specialActions = new ConcreteAggregator<>();
+    //private ArrayList<SpecialAction> specialActions = new ArrayList<>();
     private Map<String, String> properties = new HashMap<>();
 
     public ActionObject() {
@@ -24,22 +26,26 @@ public class ActionObject implements Comparable {
     //
 
     public void addSpecialAction(SpecialAction specialAction) {
-        this.specialActions.add(specialAction);
+        this.specialActions.getNormalArray().add(specialAction);
     }
 
     public void deleteSpecialAction(SpecialAction specialAction) {
-        this.specialActions.remove(specialAction);
+        this.specialActions.getNormalArray().remove(specialAction);
     }
 
     public List<SpecialAction> getSpecialActions() {
-        return specialActions;
+        return specialActions.getNormalArray();
     }
 
     public SpecialAction getSpecialActionByName(String name) {
         SpecialAction result = null;
-        for (SpecialAction current : specialActions) {
+        Iterator<SpecialAction> itr = specialActions.createIterator();
+
+        SpecialAction current = itr.next();
+        while (current != null) {
             if (current.actionName() == name)
                 result = current;
+            current = itr.next();
         }
         return result;
     }
@@ -50,18 +56,6 @@ public class ActionObject implements Comparable {
 
     public String getProperty(String name) {
         return properties.get(name);
-    }
-
-    @Override
-    public String toString() {
-        String res = "Properties: \n";
-        for (Map.Entry current : properties.entrySet())
-            res += "[ name: " + current.getKey() + " value: " + current.getValue() + " ]\n";
-        res += "Actions:\n[";
-        for (SpecialAction current : specialActions)
-            res += current.actionName() + " ";
-        res += "]\n";
-        return res + super.toString();
     }
 
     @Override
