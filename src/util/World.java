@@ -2,32 +2,43 @@ package util;
 
 import actionObject.ActionObject;
 import actionObject.UnitFactory.BasicActionObjectFactory;
-import actionObject.UnitFactory.ConcreteUnitFactory;
+import actionObject.UnitFactory.UnitFactory;
 import actionObject.actions.*;
+import util.Aggregation.Aggregator;
+import util.Aggregation.Iterator;
 
 import java.awt.*;
 import java.util.*;
+import java.util.List;
 
-public class World {
+/**
+ * Класс-фасад для логики игры, орагнизует хранение всех игровых объектов и дает доступ к ним только через свой интерфейс
+ * Так-же является единственным возможным экземпляром
+ */
+public class World implements Aggregator<Cell>{
+    private static World self;
     private Cell[][] map;
     private ArrayList<Set<ActionObject>> sides;
-    private GraphicsController graphicsControllerBridge;
+
 
     //TODO: перенести в метод
-    private BasicActionObjectFactory baseUnit = new ConcreteUnitFactory();
-    private BasicActionObjectFactory assaultUnit = new ConcreteUnitFactory();
-    private BasicActionObjectFactory supplyUnit = new ConcreteUnitFactory();
+    private BasicActionObjectFactory baseUnit = new UnitFactory();
+    private BasicActionObjectFactory assaultUnit = new UnitFactory();
+    private BasicActionObjectFactory supplyUnit = new UnitFactory();
 
-    public World(int size) {
+    public World(int width, int height, int playersCount, ViewBridge view) {
         sides = new ArrayList<>();
-        map = new Cell[size][size];
+        map = new Cell[width][height];
 
-        for (int i = 0; i < size; i++) {
-            for (int k = 0; k < size; k++) {
+        for (int i = 0; i < width; i++) {
+            for (int k = 0; k < height; k++) {
                 map[i][k] = new Cell();
                 map[i][k].setWorld(this);
             }
         }
+
+        Init(playersCount);
+        this.view = view;
     }
 
     public Point getActionObjectCoordinates(ActionObject value) {
@@ -81,4 +92,23 @@ public class World {
 
     }
 
+    @Override
+    public Iterator<Cell> createIterator() {
+        return null;
+    }
+
+    @Override
+    public List getList() {
+        return null;
+    }
+
+    @Override
+    public void add(Cell value) {
+
+    }
+
+    @Override
+    public void remove(Cell value) {
+
+    }
 }

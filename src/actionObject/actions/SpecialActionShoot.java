@@ -9,13 +9,13 @@ import util.World;
 public class SpecialActionShoot implements SpecialAction {
 
     private static String name = "Shoot";
-    private static String[] requiredProperties = {"ShootRange", "ShootDamage", "HealthMaximal", "HealthCurrent"};
+    private static String[] requiredProperties = {"ShootRange", "ShootDamage"};
     private World world;
 
     @Override
     public void doAction(ActionObject target, ActionObject owner) {
         if (getDistance(target, owner) < Integer.parseInt(owner.getProperty("ShootRange")))
-            target.addProperty("Health", String.valueOf(Integer.parseInt(target.getProperty("Health")) - Integer.parseInt(owner.getProperty("ShootDamageamage"))));
+            target.addProperty("Health", String.valueOf(Integer.parseInt(target.getProperty("Health")) - Integer.parseInt(owner.getProperty("ShootDamage"))));
     }
 
     private int getDistance(ActionObject target, ActionObject owner) {

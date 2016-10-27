@@ -20,7 +20,20 @@ public interface Aggregator<T> {
      *
      * @return List объектов
      */
-    List<T> getNormalArray();
+    List getList();
 
+    /**
+     * Метод добавления экземпляра к коллекции
+     *
+     * @param value экземпляр
+     */
+    void add(T value);
+
+    /**
+     * Метод удаления экземпляра из коллекции
+     *
+     * @param value экземпляр
+     */
+    void remove(T value);
 
 }

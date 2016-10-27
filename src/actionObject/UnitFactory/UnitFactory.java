@@ -3,12 +3,11 @@ package actionObject.UnitFactory;
 import actionObject.ActionObject;
 import actionObject.actions.SpecialAction;
 
-import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ConcreteUnitFactory implements BasicActionObjectFactory {
+public class UnitFactory implements BasicActionObjectFactory {
 
     private ArrayList<SpecialAction> actionTemplateList = new ArrayList<>();
     private Map<String, String> propertiesTemplateList = new HashMap<>();
@@ -17,6 +16,9 @@ public class ConcreteUnitFactory implements BasicActionObjectFactory {
     @Override
     public ActionObject buildActionObject() {
         ActionObject currentObject = new ActionObject();
+
+        currentObject.addProperty("HealthMaximal", "10");
+        currentObject.addProperty("Health", "10");
 
         for (Map.Entry<String, String> currentProperty : propertiesTemplateList.entrySet()) {
             currentObject.addProperty(currentProperty.getKey(), currentProperty.getValue());
@@ -56,7 +58,7 @@ public class ConcreteUnitFactory implements BasicActionObjectFactory {
 
     @Override
     public BasicActionObjectFactory clone() {
-        ConcreteUnitFactory clone = new ConcreteUnitFactory();
+        UnitFactory clone = new UnitFactory();
         clone.actionTemplateList = new ArrayList<>(actionTemplateList);
         clone.propertiesTemplateList = new HashMap<>(propertiesTemplateList);
         clone.actionToPropertyList = new HashMap<>(actionToPropertyList);
