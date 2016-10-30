@@ -1,6 +1,8 @@
 package actionObject;
 
 import actionObject.actions.SpecialAction;
+import behaviour.Behaviour;
+import behaviour.NullBehaviour;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,18 +10,26 @@ import java.util.List;
 import java.util.Map;
 
 public class ActionObject implements Comparable {
+    Behaviour driver;
     private ArrayList<SpecialAction> specialActions = new ArrayList<>();
-    //private ListAggregator<SpecialAction> specialActions = new ListAggregator<>();
     private Map<String, String> properties = new HashMap<>();
 
     public ActionObject() {
         properties.put("owner", "none");
         properties.put("name", "#unnamed");
+        driver = new NullBehaviour(this);
     }
 
     public ActionObject(String name) {
         properties.put("owner", "none");
         properties.put("name", name);
+        driver = new NullBehaviour(this);
+    }
+
+    public ActionObject(String name, Behaviour driver) {
+        properties.put("owner", "none");
+        properties.put("name", name);
+        this.driver = driver;
     }
 
     /**
@@ -51,6 +61,7 @@ public class ActionObject implements Comparable {
 
     /**
      * ЛДОступ к специальному действию экземпляра по имени
+     *
      * @param name имя специального действия
      * @return специальное десйствие или null если его нет
      */
@@ -81,6 +92,13 @@ public class ActionObject implements Comparable {
      */
     public String getProperty(String name) {
         return properties.get(name);
+    }
+
+    /**
+     * Метод выполнения действий экземпляром поведения, управляющим текущим экземпляром
+     */
+    public void doActions() {
+        driver.doActions();
     }
 
     @Override

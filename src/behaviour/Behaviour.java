@@ -1,4 +1,11 @@
 package behaviour;
 
-public abstract class Behaviour {
+import actionObject.ActionObject;
+
+public interface Behaviour {
+    void doActions();
+
+    ActionObject getDriven();
+
+    void setDriven(ActionObject driven);
 }

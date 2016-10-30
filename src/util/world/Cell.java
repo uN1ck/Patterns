@@ -1,4 +1,4 @@
-package util;
+package util.world;
 
 import actionObject.ActionObject;
 
@@ -12,14 +12,35 @@ public class Cell extends ActionObject {
     private World world;
 
     public Cell() {
-        setUnit(null);
+        super();
     }
 
+    /**
+     * Конструктор клетки, привязанной к миру
+     *
+     * @param world мир клетки
+     */
+    public Cell(World world) {
+        super();
+        this.world = world;
+    }
+
+    /**
+     * Метод доступа к юниту в клетке
+     *
+     * @return юнит клетки
+     */
     public ActionObject getUnit() {
         return unit;
     }
 
-    public boolean setUnit(ActionObject unit) {
+    /**
+     * Метод попытки утсановки юнита в клетку если она не занята
+     *
+     * @param unit юнит, который следует поставить к летку
+     * @return удалось ли поставить юнит
+     */
+    public boolean tryPlaceUnit(ActionObject unit) {
         if (unit == null) {
             this.unit = null;
             return true;
@@ -31,6 +52,10 @@ public class Cell extends ActionObject {
         return false;
     }
 
+    public boolean isEmpty() {
+        return unit == null;
+    }
+
     public World getWorld() {
         return world;
     }
@@ -39,13 +64,4 @@ public class Cell extends ActionObject {
         this.world = world;
     }
 
-    @Override
-    public String toString() {
-        String result = "Cell content:\n";
-        if (unit != null)
-            result += unit.toString();
-        else
-            result += "NONE";
-        return result;
-    }
 }

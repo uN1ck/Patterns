@@ -1,14 +1,14 @@
 package actionObject.actions;
 
 import actionObject.ActionObject;
-import util.World;
+import util.world.World;
 
 /**
  * Класс определяющий действие стрельбы от юнита по точке
  */
-public class SpecialActionShoot implements SpecialAction {
+public class SpecialActionShoot extends SpecialAction {
 
-    private static String name = "Shoot";
+
     private static String[] requiredProperties = {"ShootRange", "ShootDamage"};
     private World world;
 
@@ -21,11 +21,6 @@ public class SpecialActionShoot implements SpecialAction {
     private int getDistance(ActionObject target, ActionObject owner) {
         //TODO: дописать манхеттанское расстояние
         return 0;
-    }
-
-    @Override
-    public String actionName() {
-        return name;
     }
 
     @Override

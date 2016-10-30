@@ -5,8 +5,9 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
+import util.ViewBridge;
 
-public class Window extends Application implements GraphicsBridge {
+public class JavaFXWindow extends Application implements ViewBridge {
     private Canvas canvas;
     GraphicsContext graphicsContext;
 

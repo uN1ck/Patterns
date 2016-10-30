@@ -2,19 +2,16 @@ package actionObject.actions;
 
 import actionObject.ActionObject;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
 /**
  * Класс действия передачи ресурсов. описывает весь процесс передачи ресурсов от одного объектаДействия к другому.
  * Свойства связанные с классом и требуемые при добавлении действия к объектуДействия:
  * (MaximalSupply, CurrentSupply)
  */
 
-public class SpecialActionGetSupplies implements SpecialAction {
+public class SpecialActionGetSupplies extends SpecialAction {
+    private static String[] requiredProperties = {"SupplyMaximal", "SupplyCurrent"};
     private String name = "SuppliesTransfer";
     private int singleTransmission;
-    private static String[] requiredProperties = {"SupplyMaximal", "SupplyCurrent"};
 
     /**
      * Конструктор действия оп передаче ресурсов от {@param target} к {@param owner}
@@ -35,11 +32,6 @@ public class SpecialActionGetSupplies implements SpecialAction {
     @Override
     public void doAction(ActionObject target, ActionObject owner) {
         owner.getProperty("CurrentSupply");
-    }
-
-    @Override
-    public String actionName() {
-        return name;
     }
 
     @Override

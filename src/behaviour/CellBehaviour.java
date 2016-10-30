@@ -1,17 +1,19 @@
 package behaviour;
 
 import actionObject.ActionObject;
+import util.world.Cell;
 
-public class NullBehaviour implements Behaviour {
-    private ActionObject driven;
+public class CellBehaviour implements Behaviour {
+    Cell driven;
 
-    public NullBehaviour(ActionObject driven) {
+    public CellBehaviour(Cell Driven) {
         this.driven = driven;
     }
 
     @Override
     public void doActions() {
-        System.out.println("Doing actions of " + driven.getProperty("name"));
+        if (!driven.isEmpty())
+            driven.getUnit().doActions();
     }
 
     @Override
@@ -19,8 +21,9 @@ public class NullBehaviour implements Behaviour {
         return driven;
     }
 
+    @SuppressWarnings("uncheked")
     @Override
     public void setDriven(ActionObject driven) {
-        this.driven = driven;
+        this.driven = (Cell) driven;
     }
 }

@@ -1,7 +1,10 @@
 package util;
 
-import actionObject.ActionObject;
+import util.world.Cell;
+
+import java.awt.*;
 
 public interface ViewBridge {
-    void drawActionObject(ActionObject value, int x, int y);
+
+    void drawCell(Cell value, Point position);
 }

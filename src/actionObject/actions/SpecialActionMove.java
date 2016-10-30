@@ -1,14 +1,11 @@
 package actionObject.actions;
 
 import actionObject.ActionObject;
-import util.World;
+import util.world.World;
 
 import java.awt.*;
-import java.util.Set;
-import java.util.TreeSet;
 
-public class SpecialActionMove implements SpecialAction {
-    private String name = "Move";
+public class SpecialActionMove extends SpecialAction {
     private static String[] requiredProperties = {"MoveMaximal", "MoveRest"};
     private World world;
 
@@ -21,15 +18,10 @@ public class SpecialActionMove implements SpecialAction {
         Point position = world.getActionObjectCoordinates(owner);
         Point nextPositinon = world.getActionObjectCoordinates(target);
 
-        if (world.getCellByCoordinates(nextPositinon).setUnit(owner) == false)
+        if (world.getCellByCoordinates(nextPositinon).tryPlaceUnit(owner) == false)
             throw new Exception("Can't move unit");
 
-        world.getCellByCoordinates(position).setUnit(null);
-    }
-
-    @Override
-    public String actionName() {
-        return name;
+        world.getCellByCoordinates(position).tryPlaceUnit(null);
     }
 
     @Override

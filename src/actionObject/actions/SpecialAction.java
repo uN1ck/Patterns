@@ -2,12 +2,10 @@ package actionObject.actions;
 
 import actionObject.ActionObject;
 
-import java.util.ArrayList;
-
 /**
  * Интерфеййс активного специального действия юнита
  */
-public interface SpecialAction {
+public abstract class SpecialAction {
 
     /**
      * Метод активного специального действия юнита
@@ -15,14 +13,16 @@ public interface SpecialAction {
      * @param target Объект над которым выполняется действие
      * @param owner  Объект выполняющий действие
      */
-    void doAction(ActionObject target, ActionObject owner) throws Exception;
+    public abstract void doAction(ActionObject target, ActionObject owner) throws Exception;
 
     /**
      * Метод определения идентификатора действия
      *
      * @return Имя действия
      */
-    String actionName();
+    public String actionName() {
+        return this.getClass().getSimpleName();
+    }
 
     /**
      * Метод определяющий какие свойства у объектаДействия должны быть,
@@ -30,6 +30,6 @@ public interface SpecialAction {
      *
      * @return список названий свойств
      */
-    String[] requiredProperties();
+    public abstract String[] requiredProperties();
 
 }

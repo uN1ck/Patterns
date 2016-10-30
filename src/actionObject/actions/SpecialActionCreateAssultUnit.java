@@ -2,20 +2,13 @@ package actionObject.actions;
 
 import actionObject.ActionObject;
 
-public class SpecialActionCreateAssultUnit implements SpecialAction {
-    private String name = "CreateAssaultUnit";
-    private static String[] requiredProperties = {"SupplyMaximal", "SupplyCurrent"};
-    private int createingCost = 10;
+public class SpecialActionCreateAssultUnit extends SpecialAction {
 
+    private static String[] requiredProperties = {"SupplyMaximal", "SupplyCurrent"};
 
     @Override
     public void doAction(ActionObject target, ActionObject owner) {
 
-    }
-
-    @Override
-    public String actionName() {
-        return name;
     }
 
     @Override
