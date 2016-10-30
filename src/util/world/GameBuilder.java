@@ -32,3 +32,29 @@ public interface GameBuilder {
      */
     void createGame(Game instance);
 }
+
+
+//    //TODO: перенести в метод
+//    private ActionObjectBuilder baseUnit = new Builder();
+//    private ActionObjectBuilder assaultUnit = new Builder();
+//    private ActionObjectBuilder supplyUnit = new Builder();
+//
+//    private void initFactories() {
+//        baseUnit.addAction(new SpecialActionMove(this), new HashMap<>());
+//        assaultUnit = baseUnit.clone();
+//        assaultUnit.setProperty("MoveMaximal", "5");
+//        assaultUnit.setProperty("MoveRest", "5");
+//        supplyUnit = assaultUnit.clone();
+//
+//        baseUnit.addAction(new SpecialActionGetSupplies(100), new HashMap<>());
+//        baseUnit.setProperty("SupplyMaximal", "1000");
+//        baseUnit.setProperty("SupplyCurrent", "1000");
+//        baseUnit.addAction(new SpecialActionCreateAssultUnit(), new HashMap<>());
+//        baseUnit.addAction(new SpecialActionCreateSupplyUnit(), new HashMap<>());
+//
+//        assaultUnit.addAction(new SpecialActionShoot(), new HashMap<>());
+//        supplyUnit.addAction(new SpecialActionGetSupplies(100), new HashMap<>());
+//        supplyUnit.setProperty("SupplyMaximal", "500");
+//        supplyUnit.setProperty("SupplyCurrent", "500");
+//
+//    }

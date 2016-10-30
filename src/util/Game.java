@@ -28,7 +28,7 @@ public class Game {
      *
      * @return Экземпляр игры
      */
-    static Game instance() {
+    public static Game instance() {
         if (instance != null)
             return instance;
         else {
@@ -37,47 +37,42 @@ public class Game {
         }
     }
 
+    public void setView(ViewBridge view) {
+        this.view = view;
+    }
+
+    /**
+     * Метод построения игры с помощью строителя
+     *
+     * @param builder строитель игры
+     */
     public void buildGame(GameBuilder builder) {
         this.world = builder.createWorld();
         this.players = builder.createPlayers();
     }
 
-    void gameLoop(int ticks) {
+    /**
+     * Основнйо метод игры, просчитывает каждую клетку в мире игры и дает выполнить ей ее десйтсвия, т.е. обращается
+     * к возможному юниту внутри и дает ему выполнить свои действия, в процессе обхода,
+     * по завершении действия очередного юнита запускает следующего.
+     * После полного общета всех юнитов начинается обработка полученнй конфигурации системой ввода-вывода {@link #view}
+     *
+     * @param ticks Количество тиков для общета игры, фактически количество ходов игры, если отрицательно, то обход бесконечен
+     */
+    public void gameLoop(int ticks) {
 
         for (int i = 0; i < ticks; i++) {
             WorldIterator worldIterator = world.iterator();
             while (worldIterator.hasNext()) {
                 Cell current = worldIterator.next();
                 current.doActions();
-
+            }
+            worldIterator = world.iterator();
+            while (worldIterator.hasNext()) {
+                Cell current = worldIterator.next();
                 view.drawCell(current, worldIterator.getPosition());
             }
         }
     }
 
-//
-//    //TODO: перенести в метод
-//    private ActionObjectBuilder baseUnit = new Builder();
-//    private ActionObjectBuilder assaultUnit = new Builder();
-//    private ActionObjectBuilder supplyUnit = new Builder();
-//
-//    private void initFactories() {
-//        baseUnit.addAction(new SpecialActionMove(this), new HashMap<>());
-//        assaultUnit = baseUnit.clone();
-//        assaultUnit.setProperty("MoveMaximal", "5");
-//        assaultUnit.setProperty("MoveRest", "5");
-//        supplyUnit = assaultUnit.clone();
-//
-//        baseUnit.addAction(new SpecialActionGetSupplies(100), new HashMap<>());
-//        baseUnit.setProperty("SupplyMaximal", "1000");
-//        baseUnit.setProperty("SupplyCurrent", "1000");
-//        baseUnit.addAction(new SpecialActionCreateAssultUnit(), new HashMap<>());
-//        baseUnit.addAction(new SpecialActionCreateSupplyUnit(), new HashMap<>());
-//
-//        assaultUnit.addAction(new SpecialActionShoot(), new HashMap<>());
-//        supplyUnit.addAction(new SpecialActionGetSupplies(100), new HashMap<>());
-//        supplyUnit.setProperty("SupplyMaximal", "500");
-//        supplyUnit.setProperty("SupplyCurrent", "500");
-//
-//    }
 }
