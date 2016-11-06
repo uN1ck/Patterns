@@ -1,3 +1,5 @@
+package JavaFXDraw;
+
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -45,11 +47,12 @@ public class JavaFXWindow extends Application implements ViewBridge {
     @Override
     public void drawCell(Cell value, Point position) {
 
-        Image sprite = new Image("file:img/ground1.png");
+        Image spriteGround = new Image("file:img/ground1.png");
+        Image spriteActionUnit = new Image("file:img/building.png");
         int scale = 5;
-        graphicsContext.drawImage(sprite, position.x * sprite.getWidth() * scale, position.y * sprite.getHeight() * scale, sprite.getWidth() * scale, sprite.getHeight() * scale);
+        graphicsContext.drawImage(spriteGround, position.x * spriteGround.getWidth() * scale, position.y * spriteGround.getHeight() * scale, spriteGround.getWidth() * scale, spriteGround.getHeight() * scale);
         if (!value.isEmpty())
-            graphicsContext.drawImage(sprite, position.x * sprite.getWidth() * scale, position.y * sprite.getHeight() * scale, sprite.getWidth() * scale, sprite.getHeight() * scale);
+            graphicsContext.drawImage(spriteActionUnit, position.x * spriteActionUnit.getWidth() * scale, position.y * spriteActionUnit.getHeight() * scale, spriteActionUnit.getWidth() * scale, spriteActionUnit.getHeight() * scale);
 
     }
 }

@@ -105,5 +105,9 @@ public class ActionObject implements Comparable {
     public int compareTo(Object o) {
         return this.hashCode() - o.hashCode();
     }
+
+    public Map<String, String> getProperties() {
+        return properties;
+    }
 }
 
