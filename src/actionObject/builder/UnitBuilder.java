@@ -1,4 +1,4 @@
-package actionObject.Builder;
+package actionObject.builder;
 
 import actionObject.ActionObject;
 import actionObject.actions.SpecialAction;

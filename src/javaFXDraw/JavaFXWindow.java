@@ -1,4 +1,4 @@
-package JavaFXDraw;
+package javaFXDraw;
 
 import javafx.application.Application;
 import javafx.scene.Group;

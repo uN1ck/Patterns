@@ -11,4 +11,3 @@ public interface Composite {
 
     void drawSelf();
 }
-

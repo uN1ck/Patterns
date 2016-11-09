@@ -35,9 +35,9 @@ public interface GameBuilder {
 
 
 //    //TODO: перенести в метод
-//    private ActionObjectBuilder baseUnit = new Builder();
-//    private ActionObjectBuilder assaultUnit = new Builder();
-//    private ActionObjectBuilder supplyUnit = new Builder();
+//    private ActionObjectBuilder baseUnit = new builder();
+//    private ActionObjectBuilder assaultUnit = new builder();
+//    private ActionObjectBuilder supplyUnit = new builder();
 //
 //    private void initFactories() {
 //        baseUnit.addAction(new SpecialActionMove(this), new HashMap<>());

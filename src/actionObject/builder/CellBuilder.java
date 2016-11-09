@@ -1,4 +1,4 @@
-package actionObject.Builder;
+package actionObject.builder;
 
 import actionObject.actions.SpecialAction;
 import actionObject.actions.SpecialActionsDoUnitAction;
