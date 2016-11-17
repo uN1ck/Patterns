@@ -8,6 +8,7 @@ import actionObject.ActionObject;
 public interface AbstractFactory {
     /**
      * Создать абстрактного юнита
+     *
      * @return созданный юнит
      */
     ActionObject createUnit();

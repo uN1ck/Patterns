@@ -6,27 +6,31 @@ import util.world.World;
 import java.awt.*;
 
 public class SpecialActionMove extends SpecialAction {
-    private static String[] requiredProperties = {"MoveMaximal", "MoveRest"};
-    private World world;
 
-    public SpecialActionMove(World world) {
+    private World world;
+    private int distance;
+
+    /**
+     * Конструктор действия передвижения юнита, использует мир для реализации
+     *
+     * @param world    мир
+     * @param distance максимальное расстояние передвижения
+     */
+    public SpecialActionMove(World world, int distance) {
         this.world = world;
+        this.distance = distance;
     }
 
     @Override
-    public void doAction(ActionObject target, ActionObject owner) throws Exception {
+    public void doAction(ActionObject target, ActionObject owner) {
         Point position = world.getActionObjectCoordinates(owner);
         Point nextPositinon = world.getActionObjectCoordinates(target);
-
-        if (world.getCellByCoordinates(nextPositinon).tryPlaceUnit(owner) == false)
-            throw new Exception("Can't move unit");
-
-        world.getCellByCoordinates(position).tryPlaceUnit(null);
+        if (distance >= getDistance(position, nextPositinon))
+            if (world.getCellByCoordinates(nextPositinon).tryPlaceUnit(owner))
+                world.getCellByCoordinates(position).tryPlaceUnit(null);
     }
 
-    @Override
-    public String[] requiredProperties() {
-        return requiredProperties;
+    private int getDistance(Point from, Point to) {
+        return Math.abs(from.x - to.x) + Math.abs(from.y - to.y);
     }
-
 }

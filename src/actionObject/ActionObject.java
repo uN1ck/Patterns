@@ -5,32 +5,16 @@ import behaviour.Behaviour;
 import behaviour.NullBehaviour;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ActionObject implements Comparable {
     Behaviour driver;
     private ArrayList<SpecialAction> specialActions = new ArrayList<>();
-    private Map<String, String> properties = new HashMap<>();
 
     public ActionObject() {
-        properties.put("owner", "none");
-        properties.put("name", "#unnamed");
         driver = new NullBehaviour(this);
     }
 
-    public ActionObject(String name) {
-        properties.put("owner", "none");
-        properties.put("name", name);
-        driver = new NullBehaviour(this);
-    }
-
-    public ActionObject(String name, Behaviour driver) {
-        properties.put("owner", "none");
-        properties.put("name", name);
-        this.driver = driver;
-    }
 
     /**
      * Метод добавления специального действия юнита к экземпляру
@@ -60,7 +44,7 @@ public class ActionObject implements Comparable {
     }
 
     /**
-     * ЛДОступ к специальному действию экземпляра по имени
+     * Доступ к специальному действию экземпляра по имени
      *
      * @param name имя специального действия
      * @return специальное десйствие или null если его нет
@@ -75,26 +59,6 @@ public class ActionObject implements Comparable {
     }
 
     /**
-     * Метод добавленяи свойства к экземпляру
-     *
-     * @param name  имя свойства
-     * @param value значение свойства
-     */
-    public void addProperty(String name, String value) {
-        properties.put(name, value);
-    }
-
-    /**
-     * Метод взятия свойства у экземпляра
-     *
-     * @param name имя свойства
-     * @return значенеи свойства
-     */
-    public String getProperty(String name) {
-        return properties.get(name);
-    }
-
-    /**
      * Метод выполнения действий экземпляром поведения, управляющим текущим экземпляром
      */
     public void doActions() {
@@ -106,8 +70,5 @@ public class ActionObject implements Comparable {
         return this.hashCode() - o.hashCode();
     }
 
-    public Map<String, String> getProperties() {
-        return properties;
-    }
 }
 

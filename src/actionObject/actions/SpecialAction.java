@@ -13,7 +13,7 @@ public abstract class SpecialAction {
      * @param target Объект над которым выполняется действие
      * @param owner  Объект выполняющий действие
      */
-    public abstract void doAction(ActionObject target, ActionObject owner) throws Exception;
+    public abstract void doAction(ActionObject target, ActionObject owner);
 
     /**
      * Метод определения идентификатора действия
@@ -23,13 +23,5 @@ public abstract class SpecialAction {
     public String actionName() {
         return this.getClass().getSimpleName();
     }
-
-    /**
-     * Метод определяющий какие свойства у объектаДействия должны быть,
-     * для корректной работы данного действия при добавлении
-     *
-     * @return список названий свойств
-     */
-    public abstract String[] requiredProperties();
 
 }

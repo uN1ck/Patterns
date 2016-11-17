@@ -1,4 +1,4 @@
-package util;
+package util.view;
 
 import util.world.Cell;
 

@@ -35,12 +35,12 @@ public class ActionObjectElement implements Composite {
 
     @Override
     public void drawSelf() {
-        String result = "ActionObject: [ " + ownerLink.getProperty("name") + " ]\n Actions: \n";
-        for (SpecialAction current : ownerLink.getSpecialActions())
-            result += current.actionName() + "\n";
-        result += "Properties: \n";
-        for (Map.Entry current : ownerLink.getProperties().entrySet())
-            result += current.getKey() + " " + current.getValue() + "\n";
-        pw.print(result);
+//        String result = "ActionObject: [ " + ownerLink.getProperty("name") + " ]\n Actions: \n";
+//        for (SpecialAction current : ownerLink.getSpecialActions())
+//            result += current.actionName() + "\n";
+//        result += "Properties: \n";
+//        for (Map.Entry current : ownerLink.getProperties().entrySet())
+//            result += current.getKey() + " " + current.getValue() + "\n";
+//        pw.print(result);
     }
 }

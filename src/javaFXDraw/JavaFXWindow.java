@@ -7,10 +7,10 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import util.Game;
-import util.ViewBridge;
+import util.game.Game;
+import util.game.SampleGameBuilder;
+import util.view.ViewBridge;
 import util.world.Cell;
-import util.world.SampleGameBuilder;
 
 import java.awt.*;
 
@@ -28,7 +28,7 @@ public class JavaFXWindow extends Application implements ViewBridge {
     public void start(Stage primaryStage) throws Exception {
 
         game = Game.instance();
-        game.buildGame(new SampleGameBuilder());
+        game.buildGame(new SampleGameBuilder(2, 5, 5, game));
         game.setView(this);
 
         primaryStage.setTitle("Strategy Game Viewer");

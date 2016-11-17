@@ -12,9 +12,5 @@ public class SpecialActionCreateSupplyUnit extends SpecialAction {
 
     }
 
-    @Override
-    public String[] requiredProperties() {
-        return new String[0];
-    }
 
 }

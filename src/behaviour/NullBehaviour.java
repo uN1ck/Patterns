@@ -11,7 +11,7 @@ public class NullBehaviour implements Behaviour {
 
     @Override
     public void doActions() {
-        System.out.println("Doing actions of " + driven.getProperty("name"));
+        System.out.println("Doing actions of " + driven.getClass().getSimpleName() + "(" + driven.hashCode() + ")");
     }
 
     @Override

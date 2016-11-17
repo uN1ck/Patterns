@@ -1,21 +1,36 @@
 package actionObject.abstractFactory;
 
 import actionObject.ActionObject;
-import actionObject.actions.SpecialActionCreateAssultUnit;
-import actionObject.actions.SpecialActionCreateSupplyUnit;
-import actionObject.actions.SpecialActionGetSupplies;
-import actionObject.actions.SpecialActionMove;
+import actionObject.actions.*;
 import actionObject.builder.ActionObjectBuilder;
 import actionObject.builder.UnitBuilder;
+import util.observers.ActionObjectObserver;
 import util.world.World;
 
-import java.util.HashMap;
-
+/**
+ * Экземпляр фабрики по созданию типовой базы игрока
+ */
 public class BaseUnitFactory implements AbstractFactory {
     private World worldLink;
+    private ActionObjectObserver dieEventObserver;
+    private ActionObjectBuilder baseUnit;
 
-    public BaseUnitFactory(World value) {
-        worldLink = value;
+    /**
+     * Конструктор фабрики
+     *
+     * @param world            мир игры
+     * @param dieEventObserver наблюдатель за состоянием здоровья юнитов
+     */
+    public BaseUnitFactory(World world, ActionObjectObserver dieEventObserver) {
+        worldLink = world;
+        this.dieEventObserver = dieEventObserver;
+
+        baseUnit = new UnitBuilder();
+        baseUnit.addAction(new SpecialActionLive(100, dieEventObserver));
+        baseUnit.addAction(new SpecialActionCarrySupplies(10000, 10000));
+        baseUnit.addAction(new SpecialActionTransferSupply(100));
+        baseUnit.addAction(new SpecialActionCreateAssultUnit());
+        baseUnit.addAction(new SpecialActionCreateSupplyUnit());
     }
 
     /**
@@ -25,13 +40,6 @@ public class BaseUnitFactory implements AbstractFactory {
      */
     @Override
     public ActionObject createUnit() {
-        ActionObjectBuilder baseUnit = new UnitBuilder();
-        baseUnit.addAction(new SpecialActionMove(worldLink), new HashMap<>());
-        baseUnit.addAction(new SpecialActionGetSupplies(100), new HashMap<>());
-        baseUnit.setProperty("SupplyMaximal", "1000");
-        baseUnit.setProperty("SupplyCurrent", "1000");
-        baseUnit.addAction(new SpecialActionCreateAssultUnit(), new HashMap<>());
-        baseUnit.addAction(new SpecialActionCreateSupplyUnit(), new HashMap<>());
-        return null;
+        return baseUnit.buildActionObject();
     }
 }

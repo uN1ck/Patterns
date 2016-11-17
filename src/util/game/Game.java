@@ -1,13 +1,16 @@
-package util;
+package util.game;
 
 import actionObject.ActionObject;
+import util.observers.ActionObjectObserver;
+import util.view.NullView;
+import util.view.ViewBridge;
 import util.world.Cell;
-import util.world.GameBuilder;
 import util.world.World;
 import util.world.WorldIterator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observer;
 import java.util.Set;
 
 public class Game {
@@ -16,6 +19,8 @@ public class Game {
     private World world;
     private List<Set<ActionObject>> players;
     private ViewBridge view;
+    private ArrayList<ActionObjectObserver> observers;
+
 
     protected Game() {
         view = new NullView();
@@ -47,8 +52,9 @@ public class Game {
      * @param builder строитель игры
      */
     public void buildGame(GameBuilder builder) {
-        this.world = builder.createWorld();
-        this.players = builder.createPlayers();
+        this.world = builder.getWorld();
+        this.players = builder.getPlayers();
+        this.observers = builder.getObservers();
     }
 
     /**
@@ -75,4 +81,12 @@ public class Game {
         }
     }
 
+    /**
+     * Метод удаления уничетоженного объекта
+     *
+     * @param actionObject уничтоженный объект
+     */
+    public void removeActionObject(ActionObject actionObject) {
+        //TODO: прописать нуичтоженеи объекта
+    }
 }

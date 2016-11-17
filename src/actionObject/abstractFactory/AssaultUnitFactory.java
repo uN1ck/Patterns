@@ -8,7 +8,9 @@ import util.world.World;
 
 import java.util.HashMap;
 
-
+/**
+ * @deprecated
+ */
 public class AssaultUnitFactory implements AbstractFactory {
     private World worldLink;
 
@@ -24,10 +26,10 @@ public class AssaultUnitFactory implements AbstractFactory {
     @Override
     public ActionObject createUnit() {
         UnitBuilder assaultUnit = new UnitBuilder();
-        assaultUnit.addAction(new SpecialActionMove(worldLink), new HashMap<>());
-        assaultUnit.setProperty("MoveMaximal", "5");
-        assaultUnit.setProperty("MoveRest", "5");
-        assaultUnit.addAction(new SpecialActionShoot(), new HashMap<>());
+//        assaultUnit.addAction(new SpecialActionMove(worldLink, 5), new HashMap<>());
+//        assaultUnit.setProperty("MoveMaximal", "5");
+//        assaultUnit.setProperty("MoveRest", "5");
+//        assaultUnit.addAction(new SpecialActionShoot(worldLink, 1, 5), new HashMap<>());
         return assaultUnit.buildActionObject();
     }
 }
