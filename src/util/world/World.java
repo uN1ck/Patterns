@@ -25,6 +25,7 @@ public class World implements Iterable<Cell> {
      * @return координаты искомого объекта
      */
     public Point getActionObjectCoordinates(ActionObject value) {
+        //TODO: Поиск объекта по координатам
         return new Point(0, 0);
     }
 

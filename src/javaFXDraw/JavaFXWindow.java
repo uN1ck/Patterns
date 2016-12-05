@@ -34,9 +34,12 @@ public class JavaFXWindow extends Application implements ViewBridge {
         primaryStage.setTitle("Strategy Game Viewer");
         Group rootGroup = new Group();
         Canvas canvas = new Canvas(800, 600);
+        TextArea logs = new TextArea();
+
         graphicsContext = canvas.getGraphicsContext2D();
 
         rootGroup.getChildren().add(canvas);
+
         primaryStage.setScene(new Scene(rootGroup));
         primaryStage.show();
 

@@ -21,13 +21,26 @@ public class SpecialActionMove extends SpecialAction {
         this.distance = distance;
     }
 
+    private Point findNearestAvailible(Point target, Point position) {
+        Point result = (Point) position.clone();
+
+        if (distance >= getDistance(position, target)) {
+            return target;
+        } else {
+            double coef = distance / getDistance(position, target);
+            result.x = (int) Math.round(Math.abs(position.x - target.x) * coef);
+            result.y = (int) Math.round(Math.abs(position.y - target.y) * coef);
+        }
+        return result;
+
+    }
+
     @Override
     public void doAction(ActionObject target, ActionObject owner) {
         Point position = world.getActionObjectCoordinates(owner);
-        Point nextPositinon = world.getActionObjectCoordinates(target);
-        if (distance >= getDistance(position, nextPositinon))
-            if (world.getCellByCoordinates(nextPositinon).tryPlaceUnit(owner))
-                world.getCellByCoordinates(position).tryPlaceUnit(null);
+        Point nextPositinon = findNearestAvailible(world.getActionObjectCoordinates(target), position);
+        if (world.getCellByCoordinates(nextPositinon).tryPlaceUnit(owner))
+            world.getCellByCoordinates(position).tryPlaceUnit(null);
     }
 
     private int getDistance(Point from, Point to) {

@@ -10,7 +10,6 @@ import util.world.WorldIterator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observer;
 import java.util.Set;
 
 public class Game {
@@ -58,7 +57,7 @@ public class Game {
     }
 
     /**
-     * Основнйо метод игры, просчитывает каждую клетку в мире игры и дает выполнить ей ее десйтсвия, т.е. обращается
+     * Основной метод игры, просчитывает каждую клетку в мире игры и дает выполнить ей ее десйтсвия, т.е. обращается
      * к возможному юниту внутри и дает ему выполнить свои действия, в процессе обхода,
      * по завершении действия очередного юнита запускает следующего.
      * После полного общета всех юнитов начинается обработка полученнй конфигурации системой ввода-вывода {@link #view}
@@ -68,16 +67,20 @@ public class Game {
     public void gameLoop(int ticks) {
 
         for (int i = 0; i < ticks; i++) {
-            WorldIterator worldIterator = world.iterator();
-            while (worldIterator.hasNext()) {
-                Cell current = worldIterator.next();
-                current.doActions();
-            }
-            worldIterator = world.iterator();
-            while (worldIterator.hasNext()) {
-                Cell current = worldIterator.next();
-                view.drawCell(current, worldIterator.getPosition());
-            }
+            nextTick();
+        }
+    }
+
+    public void nextTick() {
+        WorldIterator worldIterator = world.iterator();
+        while (worldIterator.hasNext()) {
+            Cell current = worldIterator.next();
+            current.doActions();
+        }
+        worldIterator = world.iterator();
+        while (worldIterator.hasNext()) {
+            Cell current = worldIterator.next();
+            view.drawCell(current, worldIterator.getPosition());
         }
     }
 
