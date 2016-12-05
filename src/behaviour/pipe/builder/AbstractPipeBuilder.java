@@ -1,19 +1,23 @@
 package behaviour.pipe.builder;
 
+import actionObject.ActionObject;
 import behaviour.pipe.BehaviourPipeline;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Абстрактный класс сторителя цепочки обязанностей
+ */
 public abstract class AbstractPipeBuilder {
-    private List<BehaviourPipeline> behaviour = new ArrayList<>();
+    protected List<BehaviourPipeline> behaviour = new ArrayList<>();
 
     /**
      * Основной метод фабрики, создающий экземпляр поведения с заданными параметрами
      *
      * @return экземпляр поведения
      */
-    public abstract AbstractPipeBuilder buildBehaviour();
+    public abstract BehaviourPipeline buildBehaviour(ActionObject driven);
 
     /**
      * Метод клонирования объекта, используется для прототипирования фабрик

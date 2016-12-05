@@ -1,6 +1,6 @@
 package behaviour.pipe;
 
-public class BehaviourNullAction extends BehaviourPipeline {
+public class BehaviourRootAction extends BehaviourPipeline {
     @Override
     protected void doAction() {
         System.out.println("Do nothing on behaviour");
