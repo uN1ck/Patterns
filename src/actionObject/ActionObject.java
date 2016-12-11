@@ -1,18 +1,18 @@
 package actionObject;
 
 import actionObject.actions.SpecialAction;
-import behaviour.Behaviour;
-import behaviour.NullBehaviour;
+import behaviour.BehaviourInterface;
+import behaviour.NullBehaviourInterface;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ActionObject implements Comparable {
-    Behaviour driver;
+    BehaviourInterface driver;
     private ArrayList<SpecialAction> specialActions = new ArrayList<>();
 
     public ActionObject() {
-        driver = new NullBehaviour(this);
+        driver = new NullBehaviourInterface(this);
     }
 
 

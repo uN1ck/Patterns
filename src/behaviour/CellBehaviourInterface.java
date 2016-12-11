@@ -3,10 +3,10 @@ package behaviour;
 import actionObject.ActionObject;
 import util.world.Cell;
 
-public class CellBehaviour implements Behaviour {
+public class CellBehaviourInterface implements BehaviourInterface {
     Cell driven;
 
-    public CellBehaviour(Cell Driven) {
+    public CellBehaviourInterface(Cell Driven) {
         this.driven = driven;
     }
 

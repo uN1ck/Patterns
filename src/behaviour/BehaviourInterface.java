@@ -2,7 +2,7 @@ package behaviour;
 
 import actionObject.ActionObject;
 
-public interface Behaviour {
+public interface BehaviourInterface {
     void doActions();
 
     ActionObject getDriven();

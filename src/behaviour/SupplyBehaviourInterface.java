@@ -1,13 +1,12 @@
 package behaviour;
 
 import actionObject.ActionObject;
-import behaviour.pipe.BehaviourPipeline;
 
-public class SupplyBehaviour implements Behaviour {
+public class SupplyBehaviourInterface implements BehaviourInterface {
     ActionObject driven;
-    BehaviourPipeline root;
+    зкщеусеув BehaviourPipeline root;
 
-    public SupplyBehaviour() {
+    public SupplyBehaviourInterface() {
         driven = null;
     }
 
@@ -23,6 +22,6 @@ public class SupplyBehaviour implements Behaviour {
 
     @Override
     public void setDriven(ActionObject driven) {
-
+        this.driven = driven;
     }
 }
