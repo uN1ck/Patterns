@@ -40,6 +40,10 @@ public class SpecialActionCarrySupplies extends SpecialAction {
         this.value += overflow;
     }
 
+    public int getValue(){
+        return this.value;
+    }
+
     public int appendSupplies(int value) {
         this.value += value;
         int overflow = 0;

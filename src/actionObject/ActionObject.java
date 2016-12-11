@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ActionObject implements Comparable {
-    BehaviourInterface driver;
+    private BehaviourInterface driver;
     private ArrayList<SpecialAction> specialActions = new ArrayList<>();
 
     public ActionObject() {
-        driver = new NullBehaviourInterface(this);
+        setDriver(new NullBehaviourInterface(this));
     }
 
 
@@ -62,7 +62,7 @@ public class ActionObject implements Comparable {
      * Метод выполнения действий экземпляром поведения, управляющим текущим экземпляром
      */
     public void doActions() {
-        driver.doActions();
+        getDriver().doActions();
     }
 
     @Override
@@ -70,5 +70,12 @@ public class ActionObject implements Comparable {
         return this.hashCode() - o.hashCode();
     }
 
+    public BehaviourInterface getDriver() {
+        return driver;
+    }
+
+    public void setDriver(BehaviourInterface driver) {
+        this.driver = driver;
+    }
 }
 

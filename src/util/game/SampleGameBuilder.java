@@ -2,6 +2,7 @@ package util.game;
 
 
 import actionObject.ActionObject;
+import actionObject.abstractFactory.AssaultUnitFactory;
 import actionObject.abstractFactory.BaseUnitFactory;
 import util.observers.ActionObjectObserver;
 import util.observers.AliveObserver;
@@ -23,11 +24,11 @@ public class SampleGameBuilder implements GameBuilder {
 
         AliveObserver aliveObserver = new AliveObserver(instance);
         observers.add(aliveObserver);
-        BaseUnitFactory baseFactory = new BaseUnitFactory(getWorld(), aliveObserver);
+        AssaultUnitFactory assaultUnitFactory = new AssaultUnitFactory(getWorld(), aliveObserver);
 
         for (int i = 0; i < players; i++) {
             this.getPlayers().add(new HashSet<>());
-            ActionObject base = baseFactory.createUnit();
+            ActionObject base = assaultUnitFactory.createUnit();
             this.getPlayers().get(i).add(base);
 
             while (true) {

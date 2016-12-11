@@ -43,7 +43,14 @@ public class JavaFXWindow extends Application implements ViewBridge {
         primaryStage.setScene(new Scene(rootGroup));
         primaryStage.show();
 
-        game.gameLoop(10);
+        for (int i = 0; i<10; i++) {
+            game.nextTick();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 

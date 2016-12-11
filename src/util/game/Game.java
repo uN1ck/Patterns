@@ -68,7 +68,9 @@ public class Game {
 
         for (int i = 0; i < ticks; i++) {
             nextTick();
+
         }
+
     }
 
     public void nextTick() {

@@ -1,15 +1,36 @@
 package behaviour.pipe;
 
+import actionObject.ActionObject;
 import actionObject.actions.SpecialActionMove;
+import util.world.World;
 
-import java.util.Random;
+/**
+ * Класс-состояние поведения, описывающий произвольнео движение юнита, требует обязательно наличие у подконтрольного
+ * требуемого специального действия
+ */
+public class BehaviourDummyMove implements BehaviourCommand {
+    private World world;
+    private SpecialActionMove movement;
+    private ActionObject driven;
+    private BehaviourCommand nextCommand;
 
-public class BehaviourDummyMove extends BehaviourPipeline {
-    Random rand = new Random();
+    public BehaviourDummyMove(World world, ActionObject driven) {
+        this.world = world;
+        this.driven = driven;
+        movement = (SpecialActionMove) this.driven.getSpecialActionByName(SpecialActionMove.class.getSimpleName());
+    }
 
     @Override
-    protected void doAction() {
-        SpecialActionMove move = (SpecialActionMove) this.driven.getSpecialActionByName(SpecialActionMove.class.getSimpleName());
-        move.doAction(this.world.getCellByCoordinates(world.getSizes().x, world.getSizes().y), driven);
+    public BehaviourCommand doAction() {
+        movement.doAction(this.world.getCellByCoordinates(world.getSizes().x, world.getSizes().y), driven);
+        return this.getNextCommand();
+    }
+
+    public BehaviourCommand getNextCommand() {
+        return nextCommand;
+    }
+
+    public void setNextCommand(BehaviourCommand nextCommand) {
+        this.nextCommand = nextCommand;
     }
 }
