@@ -1,7 +1,6 @@
 package behaviour;
 
 import actionObject.ActionObject;
-import behaviour.pipe.BehaviourCommand;
 import behaviour.pipe.BehaviourDummyMove;
 import behaviour.pipe.BehaviourNone;
 import util.world.World;

@@ -4,6 +4,9 @@ import actionObject.ActionObject;
 import actionObject.actions.SpecialActionMove;
 import util.world.World;
 
+import java.awt.*;
+import java.util.Random;
+
 /**
  * Класс-состояние поведения, описывающий произвольнео движение юнита, требует обязательно наличие у подконтрольного
  * требуемого специального действия
@@ -13,6 +16,7 @@ public class BehaviourDummyMove implements BehaviourCommand {
     private SpecialActionMove movement;
     private ActionObject driven;
     private BehaviourCommand nextCommand;
+    private Random rand = new Random();
 
     public BehaviourDummyMove(World world, ActionObject driven) {
         this.world = world;
@@ -22,7 +26,14 @@ public class BehaviourDummyMove implements BehaviourCommand {
 
     @Override
     public BehaviourCommand doAction() {
-        movement.doAction(this.world.getCellByCoordinates(world.getSizes().x, world.getSizes().y), driven);
+        int x = rand.nextInt(world.getSizes().x);
+        int y = rand.nextInt(world.getSizes().y);
+        Point from = world.getActionObjectCoordinates(driven);
+
+        //TODO: Remove debug
+        System.out.print("Object: " + this.hashCode()+": ");
+
+        movement.doAction(this.world.getCellByCoordinates(x, y), driven);
         return this.getNextCommand();
     }
 

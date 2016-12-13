@@ -8,8 +8,6 @@ import behaviour.DummyBehaviourBuilder;
 import util.observers.ActionObjectObserver;
 import util.world.World;
 
-import java.util.HashMap;
-
 public class AssaultUnitFactory implements AbstractFactory {
     private World worldLink;
     private ActionObjectObserver dieEventObserver;

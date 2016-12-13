@@ -27,9 +27,13 @@ public class SpecialActionMove extends SpecialAction {
         if (distance >= getDistance(position, target)) {
             return target;
         } else {
-            double coef = distance / getDistance(position, target);
-            result.x = (int) Math.round(Math.abs(position.x - target.x) * coef);
-            result.y = (int) Math.round(Math.abs(position.y - target.y) * coef);
+            double coef = distance / ((double) getDistance(position, target));
+            result.x = position.x + (int) Math.round((target.x - position.x) * coef);
+            result.y = position.y + (int) Math.round((target.y - position.y) * coef);
+            if (result.x >= world.getSizes().x) result.x = world.getSizes().x - 1;
+            if (result.x < 0) result.x = 0;
+            if (result.y >= world.getSizes().y) result.y = world.getSizes().y - 1;
+            if (result.y < 0) result.y = 0;
         }
         return result;
 
@@ -38,9 +42,18 @@ public class SpecialActionMove extends SpecialAction {
     @Override
     public void doAction(ActionObject target, ActionObject owner) {
         Point position = world.getActionObjectCoordinates(owner);
-        Point nextPositinon = findNearestAvailible(world.getActionObjectCoordinates(target), position);
-        if (world.getCellByCoordinates(nextPositinon).tryPlaceUnit(owner))
+        Point nextPosition = findNearestAvailible(world.getActionObjectCoordinates(target), position);
+
+        //TODO: Remove debug
+        System.out.print("Request to move from(" + position.toString() + ") to (" + nextPosition.toString() + ") ");
+        if (world.getCellByCoordinates(nextPosition).tryPlaceUnit(owner)) {
+            //TODO: Remove debug
+            System.out.print(" is accepted\n");
             world.getCellByCoordinates(position).tryPlaceUnit(null);
+        } else {
+            //TODO: Remove debug
+            System.out.print(" DENIED!\n");
+        }
     }
 
     private int getDistance(Point from, Point to) {

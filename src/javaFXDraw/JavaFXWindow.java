@@ -27,9 +27,7 @@ public class JavaFXWindow extends Application implements ViewBridge {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        game = Game.instance();
-        game.buildGame(new SampleGameBuilder(2, 5, 5, game));
-        game.setView(this);
+
 
         primaryStage.setTitle("Strategy Game Viewer");
         Group rootGroup = new Group();
@@ -42,15 +40,22 @@ public class JavaFXWindow extends Application implements ViewBridge {
 
         primaryStage.setScene(new Scene(rootGroup));
         primaryStage.show();
+        new Thread(() -> {
+            game = Game.instance();
+            game.buildGame(new SampleGameBuilder(3, 5, 5, game));
+            game.setView(this);
 
-        for (int i = 0; i<10; i++) {
-            game.nextTick();
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            for (int i = 0; i<6; i++) {
+                graphicsContext.clearRect(0,0,canvas.getWidth(), canvas.getHeight());
+                game.nextTick();
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-        }
+        }).start();
+
     }
 
 
@@ -58,11 +63,12 @@ public class JavaFXWindow extends Application implements ViewBridge {
     public void drawCell(Cell value, Point position) {
 
         Image spriteGround = new Image("file:img/ground1.png");
-        Image spriteActionUnit = new Image("file:img/building.png");
+        Image spriteActionUnit = new Image("file:img/unit.png");
         int scale = 5;
         graphicsContext.drawImage(spriteGround, position.x * spriteGround.getWidth() * scale, position.y * spriteGround.getHeight() * scale, spriteGround.getWidth() * scale, spriteGround.getHeight() * scale);
-        if (!value.isEmpty())
+        if (!value.isEmpty()) {
             graphicsContext.drawImage(spriteActionUnit, position.x * spriteActionUnit.getWidth() * scale, position.y * spriteActionUnit.getHeight() * scale, spriteActionUnit.getWidth() * scale, spriteActionUnit.getHeight() * scale);
+        }
 
     }
 }

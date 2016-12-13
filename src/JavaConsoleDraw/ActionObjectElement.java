@@ -1,13 +1,11 @@
 package JavaConsoleDraw;
 
 import actionObject.ActionObject;
-import actionObject.actions.SpecialAction;
 
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class ActionObjectElement implements Composite {
     ActionObject ownerLink;

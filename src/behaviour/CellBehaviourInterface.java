@@ -6,7 +6,7 @@ import util.world.Cell;
 public class CellBehaviourInterface implements BehaviourInterface {
     Cell driven;
 
-    public CellBehaviourInterface(Cell Driven) {
+    public CellBehaviourInterface(Cell driven) {
         this.driven = driven;
     }
 

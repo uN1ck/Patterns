@@ -2,10 +2,8 @@ package behaviour.pipe;
 
 import actionObject.ActionObject;
 import actionObject.actions.SpecialActionCarrySupplies;
-import actionObject.actions.SpecialActionTransferSupply;
 import util.world.Cell;
 import util.world.World;
-import util.world.WorldIterator;
 
 import java.util.LinkedList;
 import java.util.Queue;

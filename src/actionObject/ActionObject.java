@@ -52,7 +52,7 @@ public class ActionObject implements Comparable {
     public SpecialAction getSpecialActionByName(String name) {
         SpecialAction result = null;
         for (SpecialAction current : specialActions) {
-            if (current.actionName() == name)
+            if (current.actionName().equals(name))
                 return current;
         }
         return null;

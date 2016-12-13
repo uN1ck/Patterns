@@ -1,6 +1,7 @@
 package util.world;
 
 import actionObject.ActionObject;
+import behaviour.CellBehaviourInterface;
 
 import java.awt.*;
 
@@ -14,6 +15,7 @@ public class World implements Iterable<Cell> {
             for (int k = 0; k < height; k++) {
                 map[i][k] = new Cell();
                 map[i][k].setWorld(this);
+                map[i][k].setDriver(new CellBehaviourInterface(map[i][k]));
             }
         }
     }
@@ -25,7 +27,13 @@ public class World implements Iterable<Cell> {
      * @return координаты искомого объекта
      */
     public Point getActionObjectCoordinates(ActionObject value) {
-        //TODO: Поиск объекта по координатам
+        WorldIterator worldIterator = this.iterator();
+        while (worldIterator.hasNext()) {
+            Cell current = worldIterator.next();
+
+            if (((!current.isEmpty()) && value == current.getUnit()) || value == current)
+                return worldIterator.getPosition();
+        }
         return new Point(0, 0);
     }
 
